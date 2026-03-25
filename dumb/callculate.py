@@ -5,6 +5,7 @@ import CJ
 global_ls_saving=0
 global_cs_saving=0
 global_debt_payment=0
+is_set=False
 def Refresh():
     data = RD.get_data()
     goal= RD.get_goal()
@@ -12,7 +13,7 @@ def Refresh():
     return data, goal, last_monthly_enty
 
 def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float=0.50, debt_payment_rate: float=0.10):
-    global global_ls_saving, global_cs_saving, global_debt_payment
+    global global_ls_saving, global_cs_saving, global_debt_payment, is_set
     wage = data[-1][0]
     currentLs = data[-1][1]
     currentCs = data[-1][2]
@@ -35,7 +36,7 @@ def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float
     Life_saving=currentLs+Lsaved
     Consumption=currentCs+Csaved
     Operation=wage-(Lsaved+Csaved_without_debt)
-    global_ls_saving,global_cs_saving,global_debt_payment=Lsaved,Csaved,debtpayment
+    global_ls_saving,global_cs_saving,global_debt_payment,is_set=Lsaved,Csaved,debtpayment,True
     return Life_saving, Consumption, Operation, debtpayed
 
 def callculate_goal(goal: dict):
@@ -50,13 +51,15 @@ def callculate_goal(goal: dict):
     return LS_diff, CS_diff, LS_percent, CS_percent
 
 def year_long_predictive_data(last_mounth_entry):
-    global global_ls_saving, global_cs_saving, global_debt_payment
+    global global_ls_saving, global_cs_saving, global_debt_payment, is_set
+    if not is_set:
+        raise ValueError("Important callculation parameters are not set. Please run the callculate function first to set the global variables.")
     ls_saving, cs_saving,debt=last_mounth_entry[-1][1], last_mounth_entry[-1][2], last_mounth_entry[-1][3]
     predicted_ls=[]
     predicted_cs=[]
     debt_left=[]
-    for _ in range(7):
-        if debt >= 0:
+    for _ in range(13):
+        if debt > 0:
             debt-=global_debt_payment
             ls_saving+=global_ls_saving
             cs_saving+=global_cs_saving
@@ -65,10 +68,36 @@ def year_long_predictive_data(last_mounth_entry):
             predicted_cs.append(cs_saving)
         else:
             ls_saving+=global_ls_saving
-            cs_saving+=(global_cs_saving+debt)
+            cs_saving+=(global_cs_saving+global_debt_payment)
             predicted_ls.append(ls_saving)
             predicted_cs.append(cs_saving)
     return last_mounth_entry, predicted_ls, predicted_cs, debt_left
+
+def years_long_predictive_data( years=5):
+    last_monthly_entry, predicted_Lss, predicted_Css, debt_Lefts=year_long_predictive_data(RD.get_one_data_per_month())
+    ls_saving, cs_saving,debt=last_monthly_entry[-1][1], last_monthly_entry[-1][2], last_monthly_entry[-1][3]
+    ls_diff=predicted_Lss[-1]-last_monthly_entry[-1][1]
+    cs_diff=predicted_Css[-1]-last_monthly_entry[-1][2]
+    debt_diff=last_monthly_entry[-1][3]-debt_Lefts[-1]
+    predicted_ls=[]
+    predicted_cs=[]
+    debt_left=[]
+    for _ in range(years):
+        if debt > 0 and debt_diff <= debt:
+            debt-=debt_diff
+            ls_saving+=ls_diff
+            cs_saving+=cs_diff
+            debt_left.append(debt)
+            predicted_ls.append(ls_saving)
+            predicted_cs.append(cs_saving)
+        else:
+            ls_saving+=ls_diff
+            cs_saving+=(cs_diff+debt_diff)
+            predicted_ls.append(ls_saving)
+            predicted_cs.append(cs_saving)
+    
+    return last_monthly_entry, predicted_ls, predicted_cs, debt_left
+
 
 def Push_data():
     data, goal = Refresh()
@@ -85,8 +114,10 @@ if __name__ == "__main__":
     # print("Data:", data)
     # print("Goal:", goal)
     a=callculate(data, goal['Life_saving_rate'], goal['consumption_rate'], goal['debt_payment_rate'])
-    print("Ready to push:", a)
-    c=year_long_predictive_data(last_monthly_entry, goal)
+    # print("Ready to push:", a)
+    c=year_long_predictive_data(last_monthly_entry)
     print("Predicted data for the next 6 months:", c)
     # b=callculate_goal(data, goal)
     # print("Goal difference and percentage:", b)
+    d=years_long_predictive_data(10)
+    print("Predicted data for the next 10 years:", d)

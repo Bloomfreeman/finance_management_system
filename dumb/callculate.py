@@ -39,15 +39,13 @@ def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float
     global_ls_saving,global_cs_saving,global_debt_payment,is_set=Lsaved,Csaved,debtpayment,True
     return Life_saving, Consumption, Operation, debtpayed
 
-def callculate_goal(goal: dict):
-    global global_ls_saving, global_cs_saving
+def callculate_goal(goal: dict, last_monthly_entry):
     LSgoal=goal['LSgoal']
     CSgoal=goal['CSgoal']
-    Life_saving, Consumption= global_ls_saving, global_cs_saving
-    LS_percent=(Life_saving/LSgoal)*100 if LSgoal != 0 else 0
-    CS_percent=(Consumption/CSgoal)*100 if CSgoal != 0 else 0
-    LS_diff=LSgoal-Life_saving
-    CS_diff=CSgoal-Consumption
+    LS_percent=(last_monthly_entry[-1][1]/LSgoal)*100 if LSgoal != 0 else 0
+    CS_percent=(last_monthly_entry[-1][2]/CSgoal)*100 if CSgoal != 0 else 0
+    LS_diff=LSgoal-last_monthly_entry[-1][1]
+    CS_diff=CSgoal-last_monthly_entry[-1][2]
     return LS_diff, CS_diff, LS_percent, CS_percent
 
 def year_long_predictive_data(last_mounth_entry):
@@ -71,10 +69,10 @@ def year_long_predictive_data(last_mounth_entry):
             cs_saving+=(global_cs_saving+global_debt_payment)
             predicted_ls.append(ls_saving)
             predicted_cs.append(cs_saving)
-    return last_mounth_entry, predicted_ls, predicted_cs, debt_left
+    return predicted_ls, predicted_cs, debt_left
 
 def years_long_predictive_data( years=5):
-    last_monthly_entry, predicted_Lss, predicted_Css, debt_Lefts=year_long_predictive_data(RD.get_one_data_per_month())
+    predicted_Lss, predicted_Css, debt_Lefts=year_long_predictive_data(RD.get_one_data_per_month())
     ls_saving, cs_saving,debt=last_monthly_entry[-1][1], last_monthly_entry[-1][2], last_monthly_entry[-1][3]
     ls_diff=predicted_Lss[-1]-last_monthly_entry[-1][1]
     cs_diff=predicted_Css[-1]-last_monthly_entry[-1][2]
@@ -96,7 +94,7 @@ def years_long_predictive_data( years=5):
             predicted_ls.append(ls_saving)
             predicted_cs.append(cs_saving)
     
-    return last_monthly_entry, predicted_ls, predicted_cs, debt_left
+    return predicted_ls, predicted_cs, debt_left
 
 
 def Push_data():

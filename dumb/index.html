@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FinanceFlow</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>FinanceFlow June 2025 Update</h2>
+
+<div class="top-cards">
+<div class="card">
+<div class="label">Monthly Income</div>
+<div class="value">$6,500</div>
+<div class="sub">Net monthly income</div>
+</div>
+
+<div class="card">
+<div class="label">Life Savings</div>
+<div class="value neon_green">$975</div>
+<div class="sub">15% of income</div>
+</div>
+
+<div class="card">
+<div class="label">Consumption Savings</div>
+<div class="value neon_blue">$650</div>
+<div class="sub">10% of income</div>
+</div>
+
+<div class="card">
+<div class="label">Debt Payment</div>
+<div class="value neon_red">$800</div>
+<div class="sub">Auto loan</div>
+</div>
+
+<div class="card">
+<div class="label">pocket money</div>
+<div class="value neon_orange">$1000</div>
+<div class="sub">23% of income - free to spend</div>
+</div>
+</div>
+
+
+<div class="middle">
+
+<div class="card">
+<h3>Total Savings</h3>
+<h1 id="total">$1,625</h1>
+</div>
+
+<div class="card goals">
+<h3>Savings Goals</h3>
+
+<div class="donuts">
+<div class="donut">
+<canvas id="lifeDonut"></canvas>
+</div>
+
+</div>
+</div>
+<div class="card goals">
+<h3>Consumption Savings Goals</h3>
+<div class="donuts">
+<div class="donut">
+<canvas id="consDonut"></canvas>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="bottom">
+
+<div class="card">
+<h3>Savings Projection</h3>
+<canvas id="projection"></canvas>
+</div>
+
+<div class="card">
+<h3>Debt Payoff</h3>
+<canvas id="debt"></canvas>
+</div>
+
+</div>
+
+<div class="last">
+
+<div class="card">
+<h3>Life Savings History</h3>
+<div class="chart">
+<canvas id="lifeHistory"></canvas>
+</div>
+</div>
+
+<div class="card">
+<h3>Consumption Savings History</h3>
+<div class="chart">
+<canvas id="consHistory"></canvas>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+body{
+background:#0B0A0F;
+color:white;
+font-family:Segoe UI;
+margin:0;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#16151A;
+padding:20px;
+border-radius:8px;
+}
+
+.top-cards{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+}
+
+.middle{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:15px;
+}
+
+.bottom{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:15px;
+margin-top:15px;
+}
+.bottom2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:15px;
+}
+
+.chart{
+height:220px;
+position:relative;
+}
+
+.last{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.small{
+height:160px;
+}
+
+.big{
+height:500px;
+}
+
+.mid{
+    height: 200px;
+}
+
+.value{
+font-size:22px;
+font-weight:bold;
+}
+
+.sub{
+color:#9ca3af;
+}
+
+.donuts{
+display:flex;
+gap:40px;
+}
+.donut{
+width:180px;
+height:180px;
+margin: auto;
+}
+
+.neon_green{
+    color: #37D389;
+}
+.neon_blue{
+    color: #6360B8;
+}
+.neon_red{
+    color: #C2716A;
+}
+.neon_orange{
+    color: #DBB675;
+}

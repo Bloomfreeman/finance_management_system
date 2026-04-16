@@ -95,15 +95,19 @@ def change_goal(LSgoal: float=None, CSgoal: float=None, Life_saving_rate: float=
 
 
 if __name__ == "__main__":
-    init_data()
-    with open('goal.json', 'r') as f:
-        data = json.load(f)
-    print(data)
-    change_goal(LSgoal=100)
-    with open('goal.json', 'r') as f:
-        data = json.load(f)
-    print(data)
-    change_goal(CSgoal=200)
-    with open('goal.json', 'r') as f:
-        data = json.load(f)
+    # init_data()
+    # with open('goal.json', 'r') as f:
+    #     data = json.load(f)
+    # print(data)
+    # change_goal(LSgoal=100)
+    # with open('goal.json', 'r') as f:
+    #     data = json.load(f)
+    # print(data)
+    # change_goal(CSgoal=200)
+    # with open('goal.json', 'r') as f:
+    #     data = json.load(f)
+    # print(data)
+    update_data(wage=10000)
+    cursor.execute('SELECT * FROM users')
+    data= cursor.fetchall()
     print(data)

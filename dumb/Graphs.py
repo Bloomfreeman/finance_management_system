@@ -110,8 +110,14 @@ def upward_bar(persentage=None,width=50, height=200):
     canvas_width = width
     canvas_height = height
     canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg='black')
-    
-    fill_rect = canvas.create_rectangle(0, canvas_height, canvas_width, canvas_height, fill="blue")
+    if persentage <= 40:
+        color='red'
+    elif persentage <=75:
+        color='yellow'
+    elif persentage >75:
+        color='purple'
+
+    fill_rect = canvas.create_rectangle(0, canvas_height, canvas_width, canvas_height, fill=color)
     text = canvas.create_text(canvas_width/2, canvas_height/2, text=f"{persentage:.1f}%", fill="white", font=("Arial", 8))
     progress =persentage
     fill_height=(progress/100)*canvas_height

@@ -12,7 +12,7 @@ def Refresh():
     last_monthly_enty=RD.get_one_data_per_month()
     return data, goal, last_monthly_enty
 
-def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float=0.50, debt_payment_rate: float=0.10):
+def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float=0.50, debt_payment_rate: float=0.10,get_me_row=False):
     global global_ls_saving, global_cs_saving, global_debt_payment, is_set
     wage = data[-1][0]
     currentLs = data[-1][1]
@@ -37,6 +37,8 @@ def callculate(data: list, life_saving_rate: float=0.25, consumption_rate: float
     Consumption=currentCs+Csaved
     Operation=wage-(Lsaved+Csaved_without_debt)
     global_ls_saving,global_cs_saving,global_debt_payment,is_set=Lsaved,Csaved,debtpayment,True
+    if get_me_row:
+        return wage,Lsaved, Csaved, debtpayment,Operation
     return Life_saving, Consumption, Operation, debtpayed
 
 def callculate_goal(goal: dict, last_monthly_entry):
@@ -69,10 +71,10 @@ def year_long_predictive_data(last_mounth_entry):
             cs_saving+=(global_cs_saving+global_debt_payment)
             predicted_ls.append(ls_saving)
             predicted_cs.append(cs_saving)
-    return predicted_ls, predicted_cs, debt_left
+    return predicted_ls, predicted_cs, debt_left,last_mounth_entry
 
 def years_long_predictive_data( years=5):
-    predicted_Lss, predicted_Css, debt_Lefts=year_long_predictive_data(RD.get_one_data_per_month())
+    predicted_Lss, predicted_Css, debt_Lefts,last_monthly_entry=year_long_predictive_data(RD.get_one_data_per_month())
     ls_saving, cs_saving,debt=last_monthly_entry[-1][1], last_monthly_entry[-1][2], last_monthly_entry[-1][3]
     ls_diff=predicted_Lss[-1]-last_monthly_entry[-1][1]
     cs_diff=predicted_Css[-1]-last_monthly_entry[-1][2]

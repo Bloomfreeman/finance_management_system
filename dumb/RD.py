@@ -1,6 +1,6 @@
 import sqlite3
 import json
-conn= sqlite3.connect('Cd.db')
+conn= sqlite3.connect('Cd.db',check_same_thread=False)
 cursor = conn.cursor()
 
 def get_data() -> list:

@@ -19,5 +19,5 @@ def get_goal() -> dict:
     return data
 
 if __name__ == "__main__":
-    data = get_goal()
+    data = get_one_data_per_month()
     print(data)

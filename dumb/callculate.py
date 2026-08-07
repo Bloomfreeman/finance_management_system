@@ -100,9 +100,9 @@ def years_long_predictive_data( years=5):
 
 
 def Push_data():
-    data, goal = Refresh()
-    ready_to_push=callculate(data, goal['Life_saving_rate'], goal['consumption_rate'])
-    CJ.Update_data(currentLs=ready_to_push[0], currentCs=ready_to_push[1], debt=ready_to_push[3])
+    data, goal,last_monthly_entry = Refresh()
+    ready_to_push=callculate(data, goal['Life_saving_rate'], goal['consumption_rate'], goal['debt_payment_rate'],get_me_row=False)
+    CJ.update_data(currentLs=ready_to_push[0], currentCs=ready_to_push[1], debt=ready_to_push[3])
 
 
 if __name__ == "__main__":

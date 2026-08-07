@@ -146,6 +146,197 @@ margin: auto;
 .neon_red{
     color: #C2716A;
 }
-.neon_orange{
+.neon_orange-dot{
+    background: #DBB675;
+}.neon_orange{
     color: #DBB675;
 }
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #0d0c11;
+        color: white;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+        height: 64px;
+        background: #111015;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+        border-bottom: 1px solid #24232a;
+    }
+
+    /* LOGO */
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .logo-icon {
+        color: #42d89b;
+        font-size: 22px;
+    }
+
+    /* RIGHT SIDE */
+    .top-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* DATE */
+    .date-selector {
+        background: #19181e;
+        color: #ff0000;
+        border: 1px solid #ff0000;
+        padding: 9px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .date-selector:hover {
+        background: #ff0000;
+        color: white;
+    }
+
+    /* BUTTONS */
+    .update-btn {
+        border: none;
+        padding: 10px 17px;
+        border-radius: 8px;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .income-btn {
+        background: #6860e9;
+    }
+
+    .income-btn:hover {
+        background: #7972f4;
+    }
+
+    .goal-btn {
+        background: #32d58b;
+        color: #06140e;
+    }
+
+    .goal-btn:hover {
+        background: #45e49c;
+    }
+
+    /* POPUP BACKGROUND */
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    /* POPUP */
+    .modal-content {
+        width: 380px;
+        background: #18171d;
+        border: 1px solid #302f38;
+        border-radius: 14px;
+        padding: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content h2 {
+        margin-bottom: 8px;
+        font-size: 20px;
+    }
+
+    .modal-description {
+        color: #92909a;
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .modal-content label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        color: #bcbac4;
+    }
+
+    .modal-content input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #34333c;
+        background: #101015;
+        color: white;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .modal-content input:focus {
+        border-color: #6860e9;
+    }
+
+    /* MODAL BUTTONS */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        border: none;
+        padding: 10px 18px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        background: #29282f;
+        color: #ddd;
+    }
+
+    .save-btn {
+        background: #6860e9;
+        color: white;
+    }
+
+    .cancel-btn:hover {
+        background: #35343d;
+    }
+
+    .save-btn:hover {
+        background: #7972f4;
+    }
+
+    /* DEMO CONTENT */
+    .demo {
+        padding: 30px;
+    }
+
+    .income-display {
+        color: #42d89b;
+        font-size: 24px;
+    }
+
+    .goal-display {
+        color: #7770f1;
+        font-size: 24px;
+    }

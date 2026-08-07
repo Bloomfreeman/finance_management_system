@@ -22,6 +22,25 @@ def create_data():
     conn.commit()
     conn.close()
 
+def remove_data():
+    # Connect to the database
+    conn = sqlite3.connect('Cd.db')
+    cursor = conn.cursor()
+
+    # Delete all data from the table
+    cursor.execute( """
+    DELETE FROM users 
+    WHERE rowid IN (
+        SELECT rowid FROM users 
+        ORDER BY rowid DESC 
+        LIMIT 2
+    )
+""")
+
+    # Commit changes and close the connection
+    conn.commit()
+    conn.close()
+
 def Put_data(wage: float=0, currentLs: float=0, currentCs: float=0, debt: float=0):
     # Connect to the database
     conn = sqlite3.connect('Cd.db')
@@ -107,7 +126,7 @@ if __name__ == "__main__":
     # with open('goal.json', 'r') as f:
     #     data = json.load(f)
     # print(data)
-    update_data(wage=10000)
+    remove_data()
     cursor.execute('SELECT * FROM users')
     data= cursor.fetchall()
     print(data)

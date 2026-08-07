@@ -43,19 +43,19 @@ def graph_by_month():
     Clean_months=[month.strftime("%Y-%m") for month in months]
     ls_monthly_prepared_month=Clean_months[:the_end_of_mounth]
     # dt_graph=line_graph(ls_monthly_prepared_month[:len(debt_left[:the_end_of_mounth])], debt_left[:the_end_of_mounth])
-    return ls_monthly_prepared_month,predicted_ls[:the_end_of_mounth],predicted_cs[:the_end_of_mounth]
+    return ls_monthly_prepared_month,predicted_ls[:the_end_of_mounth],predicted_cs[:the_end_of_mounth],debt_left[:the_end_of_mounth]
 
 def graph_by_year(needed_year=30):
     global current_time, Ypredicted_ls, goal
     the_end_of_year=(needed_year-int(current_time.strftime("%y")))+1
     Ypredicted_ls, Ypredicted_cs, Ydebt_left=CL.years_long_predictive_data(the_end_of_year)
-    inyearls=inyearcs=inyeardb=None
-    if goal['LSgoal'] in Ypredicted_ls:
-        inyearls=Ypredicted_ls.index(goal['LSgoal'])
-    if goal['CSgoal'] in Ypredicted_cs:
-        inyearcs=Ypredicted_cs.index(goal['CSgoal'])
-    if 0 >= Ydebt_left[-1]:
-        inyeardb=len(Ydebt_left)-1
+    # inyearls=inyearcs=inyeardb=None
+    # if goal['LSgoal'] in Ypredicted_ls:
+    #     inyearls=Ypredicted_ls.index(goal['LSgoal'])
+    # if goal['CSgoal'] in Ypredicted_cs:
+    #     inyearcs=Ypredicted_cs.index(goal['CSgoal'])
+    # if 0 >= Ydebt_left[-1]:
+    #     inyeardb=len(Ydebt_left)-1
 
     years = [current_time + relativedelta(years=i) for i in range(the_end_of_year)]
     Clean_years=[year.strftime("%Y") for year in years]

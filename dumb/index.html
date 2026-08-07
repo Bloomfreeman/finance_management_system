@@ -8,10 +8,101 @@
 </head>
 
 <body>
+ <!-- TOP BAR -->
+    <header class="top-bar">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <span class="logo-icon">▣</span>
+            <span>FinanceFlow</span>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="top-right">
+          <button
+                class="date-selector"
+                onclick="save_data()">
+                💾 Save
+            </button>
+
+            <button
+                class="update-btn income-btn"
+                onclick="openModal('income')">
+                ✎ Update Income
+            </button>
+
+            <button
+                class="update-btn goal-btn"
+                onclick="openModal('goal')">
+                ◉ Update Savings Goal
+            </button>
+
+        </div>
+    </header>
+
+
+<!-- POPUP -->
+<div class="modal" id="updateModal">
+
+    <div class="modal-content">
+
+        <h2 id="modalTitle">Update Income</h2>
+
+        <p class="modal-description" id="modalDescription">
+            Enter your new monthly income.
+        </p>
+
+        <!-- <label id="inputLabel">
+            Monthly Income
+        </label> -->
+
+        <input
+            type="number"
+            id="input1"
+            
+        >
+        <input
+            type="number"
+            id="input2"
+            
+        >
+        <input
+            type="number"
+            id="input3"
+            
+        ><input
+            type="number"
+            id="input4"
+            
+        ><input
+            type="number"
+            id="input5"
+            
+        >
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal()">
+                Cancel
+            </button>
+
+            <button
+                class="save-btn"
+                onclick="saveUpdate()">
+                Save Changes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <div class="container">
 
-<h2>FinanceFlow June 2025 Update</h2>
+<!-- <h2>FinanceFlow June 2025 Update</h2> -->
 
 <div class="top-cards">
 <div class="card">
@@ -109,6 +200,32 @@
 <div class="card">
 <h3>Debt Payoff</h3>
 <canvas id="debt"></canvas>
+ <div class="label"><h3>Extra information</h3></div>
+
+  <div class="divider"></div>
+
+  <div class="saving-row">
+    <div class="left">
+      <span class="dot green"></span>
+      <span class="sub">Life Savings / Year</span>
+    </div>
+    <div class="green-text" id="life_total-y">$24,700.00</div>
+  </div>
+
+  <div class="saving-row">
+    <div class="left">
+      <span class="dot blue"></span>
+      <span class="sub">Consumption Savings / Year</span>
+    </div>
+    <div class="blue-text" id="cons_total-y">$13,720.00</div>
+  </div>
+  <div class="saving-row">
+    <div class="left">
+      <span class="dot neon_orange-dot"></span>
+      <span class="sub">Combined / Year</span>
+    </div>
+    <div class="neon_orange" id="combined_total-y">$38,420.00</div>
+  </div>
 </div>
 
 </div>

@@ -28,6 +28,7 @@ def remove_data():
     cursor = conn.cursor()
 
     # Delete all data from the table
+    # cursor.execute('DELETE FROM users WHERE date = ?',('2026-4-1',))
     cursor.execute( """
     DELETE FROM users 
     WHERE rowid IN (

@@ -27,6 +27,7 @@ class API:
         CJ.update_data(wage=wage, currentLs=currentLs, currentCs=currentCs, debt=debt)
     def save(self):
         cl.Push_data()
+        graph_data.data,graph_data.goal,graph_data.last_monthly_entry=cl.Refresh()
 
 api = API()
 

@@ -37,7 +37,6 @@ def graph_by_month():
         inmonthcs=predicted_cs.index(goal['CSgoal'])
     if 0 >= debt_left[-1]:
         inmonthdb=len(debt_left)-1
-
     the_end_of_mounth=(12-int(current_time.strftime("%m")))+1
     months = [current_time + relativedelta(months=i) for i in range(the_end_of_mounth)]
     Clean_months=[month.strftime("%Y-%m") for month in months]
@@ -75,5 +74,5 @@ if __name__ == "__main__":
     # print(b)
     # a=graph_by_year(30)
     # print(a)
-    c=graph_for_the_past()
+    c=graph_by_month()
     print(c)

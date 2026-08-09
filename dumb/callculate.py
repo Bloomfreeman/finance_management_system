@@ -119,5 +119,5 @@ if __name__ == "__main__":
     print("Predicted data for the next 6 months:", c)
     # b=callculate_goal(data, goal)
     # print("Goal difference and percentage:", b)
-    d=years_long_predictive_data(10)
-    print("Predicted data for the next 10 years:", d)
+    # d=years_long_predictive_data(10)
+    # print("Predicted data for the next 10 years:", d)

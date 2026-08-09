@@ -180,8 +180,9 @@ async function set_text(){
         document.getElementById("debt_pay").textContent=debtpayment
         document.getElementById("c").textContent= `${goal.debt_payment_rate*100}% of consumption`
 
+        leftC=Math.round((1-(goal.Life_saving_rate+goal.consumption_rate))*100)
         document.getElementById("pocket_money").textContent= operation
-        document.getElementById("d").textContent= `${(1-(goal.Life_saving_rate+goal.consumption_rate))*100}% of income - free to spend`
+        document.getElementById("d").textContent= `${leftC}% of income - free to spend`
 
         document.getElementById("life_total").textContent=`$${life.toLocaleString('en-US')}`
         document.getElementById("cons_total").textContent=`$${con.toLocaleString('en-US')}`
@@ -239,7 +240,7 @@ cutout:"40%",
 plugins:{
 legend:{display:false},
 centerText:{
-text:`${percent}%`
+text:`${percent.toFixed(1)}%`
 }
 }
 },
@@ -314,6 +315,7 @@ async function debt_projection(){
     const data = await window.pywebview.api.graph_by_month()
     const  month=data[0]
     const debt=data[3]
+    
         create_debt_projection("debt",month,debt)
 }
 

@@ -57,8 +57,8 @@ def year_long_predictive_data(last_mounth_entry):
     ls_saving, cs_saving,debt=last_mounth_entry[-1][1], last_mounth_entry[-1][2], last_mounth_entry[-1][3]
     predicted_ls=[]
     predicted_cs=[]
-    debt_left=[]
-    for _ in range(13):
+    debt_left=[0]
+    for _ in range(12):
         if debt > 0:
             debt-=global_debt_payment
             ls_saving+=global_ls_saving

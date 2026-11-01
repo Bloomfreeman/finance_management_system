@@ -1,8 +1,16 @@
 import webview
+import CJ
 
+#I'm too lazy to fix it properly so we'er stick with this for now
+if CJ.table_exists("Cd.db","users"):
+    pass
+else:
+    CJ.create_data()
+    CJ.Put_data(1000,1000,1000,0)
+    CJ.Put_data(1000,1000,1000,0)
 import graph_data   # compiled .pyd
 import callculate as cl
-import CJ
+
 class API:
     def goal_data(self):
         return graph_data.goal_bar()

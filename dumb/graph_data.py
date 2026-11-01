@@ -1,7 +1,4 @@
 import callculate as CL
-import tkinter as tk
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -12,7 +9,7 @@ except ImportError:
 
 #imported data
 data,goal,last_monthly_entry=CL.Refresh()
-Life_saving, Consumption, Operation, debtpayed=CL.callculate(data)
+#Life_saving, Consumption, Operation, debtpayed=CL.callculate(data)
 
 #time
 current_time = datetime.now()

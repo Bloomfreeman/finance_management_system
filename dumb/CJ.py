@@ -6,14 +6,30 @@ conn = sqlite3.connect('Cd.db')
 # Create a cursor object
 cursor = conn.cursor()
 
+def table_exists(db_path, table_name):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    
+    # Query the sqlite_master system table
+    cursor.execute("""
+        SELECT name FROM sqlite_master 
+        WHERE type='table' AND name=?;
+    """, (table_name,))
+    
+    # fetchone() returns a row tuple if exists, or None if it doesn't
+    exists = cursor.fetchone() is not None
+    
+    conn.close()
+    return exists
+
 def create_data():
     # Create a table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
-            wage FLOAT DEFAULT 0,
-            currentLs FLOAT DEFAULT 0,
-            currentCs FLOAT DEFAULT 0,
-            debt FLOAT DEFAULT 0,
+            wage FLOAT DEFAULT 1000,
+            currentLs FLOAT DEFAULT 1000,
+            currentCs FLOAT DEFAULT 1000,
+            debt FLOAT DEFAULT 1000,
             date DATE DEFAULT (CURRENT_DATE)
         )
     ''')
